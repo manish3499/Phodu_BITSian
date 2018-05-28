@@ -2,7 +2,7 @@
  * 1) To predict the end-sem marks of a student based on his mid-sem marks
  * 2) To analyse the performance of a student in his end-sem exam
  *
- * This program assumes that the performance of a student is a liear funtion of his mid-sem marks
+ * This program assumes that the performance of a student is a linear funtion of his mid-sem marks
  * 
  * We write this as :  
  *
@@ -20,8 +20,9 @@
 
 
 /* Define parameters that will be used to decide the performance of a student in his end-sem exam
- * VERY_GOOD_BASELINE when muliplied by the predictd end-sem marks gives a value which is used to determine if a student has performed vey well.
- * in a similar fashion other  constants are also used*/
+ * VERY_GOOD_BASELINE when muliplied by the predictd end-sem marks gives a value which is used 
+ * to determine if a student has performed vey well.
+ * In a similar fashion other  constants are also used*/
  
 #define VERY_GOOD_BASELINE 1.5
 #define GOOD_BASELINE 1.1
@@ -83,7 +84,8 @@ int main()
 
 /* This function performs linear regression on the trainig examples.
  * the notation "sig_#" is used ot indicate that the variable is the sum of all (sigma) # values
- * for example "sig_x" is the variable used to store the sum of all (sigma) x values */
+ * for example "sig_x" is the variable used to store the sum of all (sigma) x values 
+ * further, "sig_#n" represents the sum of all (sigma) # raised to the power n*/
 void regression()
 {
 	double sig_y = 0, sig_y2 = 0, sig_x = 0, sig_x2 = 0, sig_xy = 0;
@@ -111,15 +113,21 @@ void regression()
 	printf("%lf\n",b);
 }
 
+/* Used to predict the end-sem marks given the mid-sem marks of the student.
+ * (The user is prompted to provide his mid-sem marks in this function)*/
 void predict()
 {
 	int midsem;
 	printf("Enter your mid-sem marks\t");
 	scanf("%d",&midsem);
-	int endsem = a * midsem + b ;
-	printf("Your predicted end-sem marks is: %d\n", endsem);
+	
+	//Predicts and displays the end-sem marks
+	int predicted_endsem = a * midsem + b ;
+	printf("Your predicted end-sem marks is: %d\n", predicted_endsem);
 }
 
+/* Used to predict the end-sem performance of a student in 
+ * in comparison to his mid-sem performance */
 void analyse()
 {
  	int midsem, endsem;
@@ -129,10 +137,10 @@ void analyse()
 	scanf("%d",&endsem);
 
 
-
+	//Generates predicted end-sem marks of the student
 	int predicted_endsem = a * midsem + b;
 	
-	
+	//Compares actual end-sem marks to predicted end-sem marks
 	if ( endsem >= VERY_GOOD_BASELINE * predicted_endsem ) printf("Andha Phoda!!!!");
 	else if ( endsem >= GOOD_BASELINE * predicted_endsem ) printf("Phoda!");
 	else if ( endsem == predicted_endsem ) printf("Tum nahi badloge");
