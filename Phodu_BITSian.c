@@ -75,10 +75,20 @@ int main()
 
 	regression();
 
-	predict();
-	
-	analyse();
-		
+	char input;
+	getchar();
+
+	inp:
+	printf("Do you want to predict or analyse your endsem marks? (enter a/p) \n");
+	scanf("%c",&input);
+
+	if ( input == 'a' || input == 'A' ) analyse();
+	else if ( input == 'p' || input == 'P' ) predict();
+	else 
+	{
+		printf( "INVALID INPUT\n");
+		goto	inp;
+	}	
 
 }	
 
